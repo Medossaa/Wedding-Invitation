@@ -2,10 +2,9 @@
 document.body.classList.add('cover-closed');
 const cover=document.getElementById('cover');
 let invitationOpened=false;
-document.getElementById('open').addEventListener('click',()=>{
+cover.addEventListener('click',()=>{
   if(invitationOpened)return;invitationOpened=true;startMusic();cover.classList.add('opened');
-  const delay=window.matchMedia('(prefers-reduced-motion: reduce)').matches?0:1100;
-  setTimeout(()=>{cover.hidden=true;document.body.classList.remove('cover-closed');window.scrollTo({top:0,behavior:'instant'});document.querySelector('h1').focus({preventScroll:true});startAutoScroll();},delay);
+  cover.hidden=true;document.body.classList.remove('cover-closed');window.scrollTo({top:0,behavior:'instant'});document.querySelector('h1').focus({preventScroll:true});startAutoScroll();
 });
 const eventTime=Date.parse('2026-12-04T16:00:00+02:00');
 function tick(){const s=Math.max(0,Math.floor((eventTime-Date.now())/1000));const units=[Math.floor(s/86400),Math.floor(s/3600)%24,Math.floor(s/60)%60,s%60];['days','hours','minutes','seconds'].forEach((id,i)=>document.getElementById(id).textContent=String(units[i]).padStart(2,'0').replace(/[0-9]/g,d=>'٠١٢٣٤٥٦٧٨٩'[d]));document.getElementById('celebration').hidden=s>0;}tick();setInterval(tick,1000);
